@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-export const DataContext = React.Context();
+
+export const DataContext = React.createContext();
 
 export class DataProvider extends Component {
         state ={
@@ -127,17 +128,17 @@ export class DataProvider extends Component {
                 },
 
             ]
-        }
+        };
 
 
     render() {
-        const {products} = this.state
+        const {products} = this.state;
         return (
-            <div>
+    
                 <DataContext.Provider value={{products}}>
                     {this.props.children}
                 </DataContext.Provider>
-            </div>
+   
         );
     }
 }

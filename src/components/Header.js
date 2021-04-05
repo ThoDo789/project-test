@@ -17,6 +17,7 @@ onToggle(){
     this.setState((state)=>({isToggleMenu: !state.isToggleMenu}));
 console.log(this.state.isToggleMenu)
 
+
 }
 hideMenu(){
     this.setState({isToggleMenu:false})
@@ -35,9 +36,9 @@ hideMenu(){
           </div>
           <nav>
             <ul className={this.state.isToggleMenu===true?'toggle':''}>
-                <li> <Link to="/">Home</Link></li>
-                <li><Link to="/products">Products</Link></li>
-                <li><Link to="/conact">Contact</Link></li>
+                <li> <Link to="/" exact>Home</Link></li>
+                <li><Link to="/product">Products</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/login">Login / Register</Link></li>
                 <li className="close" onClick={this.hideMenu} > <FaTimes/></li>
