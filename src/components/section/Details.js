@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { DataContext } from "../Context";
-
+import '../css/details.css';
+import Color from "./Color";
 class Details extends Component {
   static contextType = DataContext;
   constructor() {
@@ -37,10 +38,7 @@ class Details extends Component {
                 <h2>{item.title}</h2>
                 <span>${item.price}</span>
               </div>
-              <p>{
-              item.color.map((bg,index)=>
-              (<div key={index} style={{backgroundColor:bg, height:"10px",width:"10px"}}></div>))}
-              </p>
+             <Color colors ={item.color}/>
               <p>{item.Description}</p>
               <p>{item.Content}</p>
               <Link to="/cart" className="cart">Add to cart</Link>

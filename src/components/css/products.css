@@ -56,7 +56,7 @@ margin: 10px 0;
 
     margin: 10px 0;
 }
-button{
+.card button{
     border: none;
     background-color: #333;
     outline: none;
