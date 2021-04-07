@@ -5,12 +5,12 @@ import '../css/products.css';
 class Products extends Component {
   static contextType = DataContext;
   render() {
-    const { products } = this.context;
+    const { products,addCart } = this.context;
    
     return (
       <div id="product">
         {products.map((value, key) => (
-          <div className="card" key={+value.id}>
+          <div className="card" key={value.id}>
             <Link to={`/product/${value.id}`}>
               <img src={value.src} alt="" />
             </Link>
@@ -21,7 +21,7 @@ class Products extends Component {
               <span>${value.price}</span>
             <p>{value.Description}</p>
             </div>
-            <button>Add to card</button>
+            <button onClick={()=>addCart(value.id)}>Add to card</button>
           </div>
         ))}
       </div>

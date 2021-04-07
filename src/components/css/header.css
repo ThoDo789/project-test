@@ -1,9 +1,14 @@
 header {
+    position: fixed;
     min-height: 70px;
     display: flex;
+    max-width: 1200px;
+    width: 100%;
+    background: white;
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
+    box-shadow: 0 6px 16px rgb(0 0 0 / 40%);
 }
 header .logo a {
     text-decoration: none;
