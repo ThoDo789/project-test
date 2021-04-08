@@ -159,7 +159,8 @@ export class DataProvider extends Component {
         count: 1
       }
     ],
-    cart: []
+    cart: [],
+    total:0
   };
   // action
   addCart = _id => {
@@ -175,6 +176,8 @@ export class DataProvider extends Component {
     } else {
       alert("the product has been added to cart.");
     }
+ 
+
   };
 
   reduction = id => {
@@ -185,6 +188,8 @@ export class DataProvider extends Component {
       }
     });
     this.setState({ cart });
+    this.getTotal();
+
   };
 
   increase = id => {
@@ -195,7 +200,21 @@ export class DataProvider extends Component {
       }
     });
     this.setState({ cart });
+    this.getTotal();
   };
+
+  getTotal =()=>{
+  const {cart} = this.state;
+  if(cart.length!==0){
+
+  const res = cart.reduce((prev,item)=>{
+    return prev + (item.price*item.count);
+  },0)
+  console.log(res)
+  this.setState({total:res})
+}
+ 
+  }
 
   removeProduct = id => {
     const { cart } = this.state;
@@ -209,13 +228,33 @@ export class DataProvider extends Component {
 
     this.setState({ cart });
   };
+
+  componentDidUpdate(){
+
+    localStorage.setItem("dataCart",JSON.stringify(this.state.cart));
+    localStorage.setItem("dataTotal",JSON.stringify(this.state.total));
+
+  }
+  componentDidMount(){
+    const dataCart = JSON.parse(localStorage.getItem('dataCart'));
+    if(dataCart!==null){
+        this.setState({cart:dataCart})
+    }
+    const dataTotal = JSON.parse(localStorage.getItem('dataTotal'));
+    if(dataTotal!==null){
+        this.setState({total:dataTotal})
+    }
+  }
+
+
+
   render() {
-    const { products, cart } = this.state;
-    const { addCart, reduction, increase, removeProduct } = this;
+    const { products, cart,total} = this.state;
+    const { addCart, reduction, increase, removeProduct, getTotal } = this;
 
     return (
       <DataContext.Provider
-        value={{ products, addCart, cart, reduction, increase, removeProduct }}
+        value={{ products, addCart, cart, reduction, increase, removeProduct,total,getTotal }}
       >
         {this.props.children}
       </DataContext.Provider>
